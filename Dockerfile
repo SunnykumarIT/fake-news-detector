@@ -3,7 +3,7 @@ FROM eclipse-temurin:17-jdk
 
 # Install Python and Maven
 RUN apt-get update && \
-    apt-get install -y python3 python3-pip maven && \
+    apt-get install -y python python-pip maven && \
     rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -26,4 +26,4 @@ RUN mvn dependency:go-offline
 EXPOSE 8080 5000
 
 # Start both services together
-CMD sh -c "cd /app/backend && mvn spring-boot:run & cd /app/ml-api && python3 app.py"
+CMD sh -c "cd /app/backend && mvn spring-boot:run & cd /app/ml-api && python app.py"
