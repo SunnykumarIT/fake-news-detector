@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: springboot-backend
+    env: java
+    plan: free
+    buildCommand: ./mvnw clean compile -DskipTests
+    startCommand: ./mvnw spring-boot:run
+    rootDir: fake-news-detector-backend
+    branch: master
+
+  - type: web
+    name: python-ml-api
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    rootDir: ml-api
+    branch: master
