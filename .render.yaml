@@ -7,3 +7,6 @@ services:
     startCommand: ./mvn spring-boot:run
     rootDir: fake-news-detector-backend
     branch: master
+    envVars:
+      - key: RENDER_LANGUAGE
+        value: java
