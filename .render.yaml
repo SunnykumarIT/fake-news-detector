@@ -12,7 +12,12 @@ services:
     name: python-ml-api
     env: python
     plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: python app.py
     rootDir: ml-api
     branch: master
+    buildCommand: |
+      python3 -m venv venv
+      . venv/bin/activate
+      pip install --no-cache-dir -r requirements.txt
+    startCommand: |
+      . venv/bin/activate
+      python app.py
