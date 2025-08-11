@@ -12,15 +12,21 @@ function App() {
     setError(null);
     setResult(null);
     try {
-      const res = await fetch("http://localhost:8080/api/news/check", {
+      // Create React App के environment variable का उपयोग करें
+      const apiUrl = process.env.REACT_APP_API_URL;
+
+      const res = await fetch(`${apiUrl}/api/news/check`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
       });
+      
       if (!res.ok) throw new Error("HTTP " + res.status);
+      
       const data = await res.json();
       setResult(data.prediction);
-    } catch {
+    } catch (e) {
+      console.error(e); // Log the error for debugging
       setError("Unable to check news. Please try later.");
     } finally {
       setLoading(false);
