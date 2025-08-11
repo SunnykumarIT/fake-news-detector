@@ -3,7 +3,7 @@ FROM eclipse-temurin:17-jdk
 
 # Install Python and Maven
 RUN apt-get update && \
-    apt-get install -y python python-pip maven && \
+    apt-get install -y python pip maven && \
     rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -16,7 +16,7 @@ COPY fake-news-detector-backend ./backend
 COPY ml-api ./ml-api
 
 # Install Python dependencies
-RUN pip3 install --no-cache-dir -r ml-api/requirements.txt
+RUN pip install --no-cache-dir -r ml-api/requirements.txt
 
 # Pre-download Maven dependencies for backend
 WORKDIR /app/backend
