@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: fake-news-detector
+    env: java
+    plan: free
+    buildCommand: ./mvn clean install
+    startCommand: ./mvn spring-boot:run
+    rootDir: fake-news-detector-backend
+    branch: master
